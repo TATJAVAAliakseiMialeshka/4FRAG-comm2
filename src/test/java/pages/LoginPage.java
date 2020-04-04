@@ -14,11 +14,12 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class LoginPage extends BasePageClass {
 
+    //if it's just about id, just use. By.id
     private static final String EMAIL_FIELD_XPATH = "//input[@id = 'exampleInputEmail1']";
 
     private static final String PASSWORD_FIELD_XPATH = "//input[@id = 'exampleInputPassword1']";
 
-
+    //private
     public String getParamFromProperty(String propertyName) {
         FileInputStream fis;
         Properties properties = new Properties();
@@ -37,9 +38,11 @@ public class LoginPage extends BasePageClass {
 
 
     public LoginPage fillOutEmailField() throws InterruptedException {
-        WebElement emailField = waitForExpectedElement(By.xpath(String.format(EMAIL_FIELD_XPATH)));
+        //(String.format is needed when you need to paste parameter in xpath. The following xpath don't have parameters - Format is redundant
+        WebElement emailField = waitForExpectedElement(By.xpath(EMAIL_FIELD_XPATH));
         //I know that sleepers are very bad practice, but how I can set ExplicitWait there, currently have no ideas
-        Thread.sleep(2000);
+        // just use explicit wait waiting visibility not presence
+       // Thread.sleep(2000);
         emailField.sendKeys(getParamFromProperty("email"), Keys.ENTER);
         return this;
     }

@@ -14,7 +14,8 @@ public class MainPage extends BasePageClass {
     private static final String MAX_PRICE_VALUE = "16000";
 
     private static final String DPI_AND_CPI_RESOLUTION_VALUE = "23000";
-
+// naming. use controls names in constants
+    //ex: BUY_PRODUCT_BUTTON_XPATH
     private static final String BUY_PRODUCT_XPATH = "//a[text()='Купить']";
 
     private static final String CLOSE_BUTTON_WINDOW_LOCATOR = "//div[@id='notification-type']//button[contains(@class,'close')]";
@@ -25,18 +26,22 @@ public class MainPage extends BasePageClass {
 
     private static final String ADD_TO_CAMPARASION_LIST_ICON_XPATH = "//div[contains(@class,'center-block')]//a[contains(@class,'item-compare-btn')]";
 
+    //you writh CATEGORY_SECTION_XPATH. but hardcode 'Игровые мыши' - in this case it should be CATEGORY_SECTION_MOUTH_XPATH. or parameterize if existing name will be used.
     private static final String CATEGORY_SECTION_XPATH = "//span[contains(text(), 'Игровые мыши')]";
 
     private static final String CHACKBOX_BRAND_OF_CHOSEN_PRODUCT_XPATH = "//div[contains(@class, 'checkbox checkbox-success')]//input[1]";
 
+    //if only id = By.id
     private static final String INPUT_MAX_PRICE_XPATH = "//input[contains(@id, 'price-max')]";
 
     private static final String PRODUCT_TYPE_DROPDOWN_XPATH = "//div[contains(@class, 'col-filter-div')]//select";
 
+    // we have specific option, but the constant name is generic
     private static final String OPTION_FROM_PRODUCT_TYPE_XPATH = "//div[contains(@class, 'col-filter-div')]//select//option[contains(text(), 'Лазерный')]";
 
     private static final String INPUT_DPI_AND_CPI_RESOLUTION_XPATH = "//input[contains(@id, 'at52-max')]";
 
+    // do you need index? does link not have any parameter to catch?
     private static final String SUB_CATEGORY_OPTION_XPATH = "//div[contains(@class, 'brands-list')]//div//a[1]";
 
     private static final String ADDO_TO_WISH_LIST_BUTTON_XPATH = "//div[contains(@class, 'center-block')]//a[2]";
@@ -47,11 +52,14 @@ public class MainPage extends BasePageClass {
 
     public MainPage openHomePage() {
         open(APPLICATION_URL);
+        //put maximizeWindow here, right after initial url is opened
+        maximizeWindow();
         return this;
     }
 
 
     public MainPage addProductToCard() {
+        //String format is for places when you need parameters in xpath. Without parameters just use By right away.
         WebElement buyButton = waitForExpectedElement(By.xpath(String.format(BUY_PRODUCT_XPATH)));
         buyButton.click();
         waitPageIsLoadedAndJQueryIsProcessed();
@@ -78,7 +86,7 @@ public class MainPage extends BasePageClass {
     public LoginPage openLoginPage() {
         WebElement loginPage = waitForExpectedElement(By.xpath(String.format(LOGIN_PAGE_XPATH)));
         loginPage.click();
-        maximizeWindow();
+       // maximizeWindow();
         return new LoginPage();
     }
 

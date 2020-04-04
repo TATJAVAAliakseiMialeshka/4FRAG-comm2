@@ -8,8 +8,22 @@ import pages.*;
 
 public class VerifyHeaderButtonsAreClickable extends MainPage {
 
-    @Parameters({"Вход/регистрация"})
+    //all these tests don't check whether page is displayed. I see checks that some object of page was created. it tells nothing.
+    // it's just an empty object which will be created anyway. even if after click on a tab nothing is happened.
+    // you need to check specifically something on a pege.
+    //ex: LoginFormPage loginFormPage = new MainPage()
+    //                .openHomePage()
+    //                .openTabPage("Вход/регистрация");
+    // AssertTrue(loginFormPage.isLoginFormDisplayed(String formName));
+    // loginFormPage.isLoginPageUrlDisplayed(String url));
+    // etc.....
+
+    //if you have parameters, it should be in parameter, not hardcoded in openTabPage(....
+    //same for all places
+
+    //@parameters ann works not like this - it sends annos from xml. google it.
     @Test
+    @Parameters("Вход/регистрация")
     public void testLoginButtonIsClickable(){
         Boolean isLoginPageDisplayed = new MainPage()
                 .openHomePage()
@@ -24,6 +38,7 @@ public class VerifyHeaderButtonsAreClickable extends MainPage {
                 .openHomePage()
                 .openTabPage("Доставка");
         Assert.assertTrue(isDeliveryPageDisplayed);
+        // AssertTrue(deliveryPage.isDeliveryPageOpened(some UI el is loaded, previous form disappeared, successful message shown, page url is expected etc)
     }
 
     @Parameters({"Оплата"})
@@ -70,7 +85,7 @@ public class VerifyHeaderButtonsAreClickable extends MainPage {
     public void testComparasionOfProductsButtonIsClickable(){
         Boolean isComparasionListPage = new MainPage()
                 .openHomePage()
-                .openTabPage("Cравнение товаров");
+                .openTabPage("Сравнение товаров");
         Assert.assertTrue(isComparasionListPage);
     }
 

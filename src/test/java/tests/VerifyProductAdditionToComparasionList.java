@@ -8,6 +8,7 @@ import pages.MainPage;
 
 public class VerifyProductAdditionToComparasionList extends MainPage {
 
+    //same. test don't check whether page is displayed.
     @Parameters({"Сравнение товаров"})
     @Test
     public void testProductAdditionToTheList(){

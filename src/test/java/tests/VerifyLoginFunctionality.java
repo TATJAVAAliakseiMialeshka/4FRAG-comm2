@@ -18,6 +18,8 @@ public class VerifyLoginFunctionality extends MainPage {
                 .openLoginPage()
                 .fillOutEmailField()
                 .fillOutPasswordField();
+        //it's better to check something on PersonalPage UI.
+        // But if you want just current url, then the PersonalPage object itself is not needed. just write: "new MainPage.openHomePa......
         Assert.assertEquals(driver.getCurrentUrl(), "https://stage.4frag.ru/my-account/");
     }
 }

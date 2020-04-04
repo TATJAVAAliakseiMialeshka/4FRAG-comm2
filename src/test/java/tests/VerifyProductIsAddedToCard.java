@@ -9,7 +9,7 @@ import pages.MainPage;
 
 public class VerifyProductIsAddedToCard extends MainPage{
 
-
+    //just steps. there is no verification that product was added to card
     @Test
     public void testAdditionProductToCard()   {
        CardPage mainPage = new MainPage()

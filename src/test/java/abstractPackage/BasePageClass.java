@@ -16,6 +16,7 @@ import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class BasePageClass extends APIClass {
 
+    //why not final. can it be changed?
     private int WAITER_TIME_OUT = 10;
     private final int DRIVER_WAIT_TIME = 120;
 
@@ -26,7 +27,7 @@ public class BasePageClass extends APIClass {
 
 
     public WebDriver initializeDriver() {
-        System.setProperty("webdriver.chrome.driver", "D:\\Selenium Drivers\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:\\epam\\Java\\selenium\\chromedriver\\80.0.3987.106\\chromedriver.exe");
         driver = new ChromeDriver();
         maximizeWindow();
         return driver;
@@ -35,7 +36,7 @@ public class BasePageClass extends APIClass {
 
     public WebElement waitForExpectedElement(By webElementLocator) {
         return new WebDriverWait(driver, WAITER_TIME_OUT)
-                .until(ExpectedConditions.presenceOfElementLocated(webElementLocator));
+                .until(ExpectedConditions.visibilityOfElementLocated(webElementLocator));
     }
 
 
